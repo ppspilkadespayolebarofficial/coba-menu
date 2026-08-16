@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Resmi Pilkades Payo Lebar 2026</title>
+  
+  <!-- Font Modern (Inter) & Ikon FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* 1. RESET & VARIABLES */
+    :root {
+      --primary: #b91c1c;
+      --primary-dark: #7f1d1d;
+      --accent: #f59e0b;
+      --bg-body: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-body); color: var(--text-main); }
+
+    /* 2. NAVBAR MODERN (HEADER ATAS) */
+    .navbar {
+      background: #ffffff;
+      height: 70px;
+      padding: 0 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+    }
+
+    .brand-icon {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(185, 28, 28, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      border: none;
+      background: transparent;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-btn:hover {
+      background: #f1f5f9;
+      color: var(--primary);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(185, 28, 28, 0.25);
+    }
+
+    /* 3. LAYOUT CONTAINER */
+    .main-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* 4. HERO BANNER LUXURY */
+    .hero-banner {
+      background: linear-gradient(135deg, #991b1b 0%, #450a0a 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(69, 10, 10, 0.15);
+      margin-bottom: 30px;
+    }
+
+    /* Hiasan background lingkaran transparan */
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-banner h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-banner p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      font-weight: 400;
+    }
+
+    /* 5. TAB KONTEN */
+    .tab-content {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px;
+      display: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+      border: 1px solid #f1f5f9;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .section-header i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .section-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* TAHAPAN STYLING (TIMELINE) */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background: #e2e8f0;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .timeline-date {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* CALON STYLING (CARDS) */
+    .calon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card-calon {
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      background: #ffffff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-calon:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.06);
+    }
+    .no-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .avatar-placeholder {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      margin: 15px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #94a3b8;
+      border: 3px solid #f8fafc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR HEADER ATAS -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-check-to-slot"></i>
+      </div>
+      <span>PILKADES PAYO LEBAR</span>
+    </div>
+
+    <nav class="nav-links">
+      <button class="nav-btn active" onclick="bukaTab('tab-dps', this)">
+        <i class="fa-solid fa-chart-pie"></i> DPS
+      </button>
+      <button class="nav-btn" onclick="bukaTab('tab-tahapan', this)">
+        <i class="fa-solid fa-calendar-check"></i> Tahapan
+      </button>
+      <button class="nav-btn" onclick="bukaTab('tab-calon', this)">
+        <i class="fa-solid fa-users-viewfinder"></i> Calon Kades
+      </button>
+      <button class="nav-btn" onclick="bukaTab('tab-panitia', this)">
+        <i class="fa-solid fa-user-shield"></i> Panitia
+      </button>
+    </nav>
+  </header>
+
+  <div class="main-container">
+
+    <!-- HERO BANNER PREMIUM -->
+    <div class="hero-banner">
+      <div class="badge-top">
+        <i class="fa-solid fa-shield-halved"></i> PORTAL RESMI DESA
+      </div>
+      <h1>PILKADES PAYO LEBAR 2026</h1>
+      <p>Kecamatan Singkut, Kabupaten Sarolangun, Provinsi Jambi</p>
+    </div>
+
+    <!-- TAB 1: DATA PEMILIH (DPS) -->
+    <div id="tab-dps" class="tab-content active">
+      <div class="section-header">
+        <i class="fa-solid fa-chart-pie"></i>
+        <h2>Dashboard & Filter Data Pemilih (DPS)</h2>
+      </div>
+      
+      <!-- TEMPAT KODE DASHBOARD LAMA KAMU -->
+      <div style="background: #f8fafc; border: 2px dashed #cbd5e1; padding: 40px; border-radius: 12px; text-align: center; color: #64748b;">
+        <i class="fa-solid fa-code" style="font-size: 2rem; margin-bottom: 10px; color: #94a3b8;"></i>
+        <p><strong>[ AREA KODINGAN DASHBOARD DPT 4.072 DATA KAMU ]</strong></p>
+        <small>Tabel filter, statistik gender, dan card total pemilih dipasang di sini.</small>
+      </div>
+    </div>
+
+    <!-- TAB 2: TAHAPAN -->
+    <div id="tab-tahapan" class="tab-content">
+      <div class="section-header">
+        <i class="fa-solid fa-calendar-check"></i>
+        <h2>Tahapan & Jadwal Pelaksanaan</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">01 - 10 AGUSTUS 2026</div>
+          <div class="timeline-title">Pendaftaran & Penerimaan Berkas Calon Kades</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">11 - 15 AGUSTUS 2026</div>
+          <div class="timeline-title">Verifikasi & Penelitian Keabsahan Berkas</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">16 - 20 AGUSTUS 2026</div>
+          <div class="timeline-title">Pengumuman Daftar Pemilih Sementara (DPS)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">25 AGUSTUS 2026</div>
+          <div class="timeline-title">Pemungutan & Penghitungan Suara (Hari H)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: CALON KADES -->
+    <div id="tab-calon" class="tab-content">
+      <div class="section-header">
+        <i class="fa-solid fa-users-viewfinder"></i>
+        <h2>Calon Kepala Desa Payo Lebar</h2>
+      </div>
+
+      <div class="calon-grid">
+        <div class="card-calon">
+          <div class="no-tag">01</div>
+          <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Nama Calon 1</h3>
+          <p style="font-size: 0.85rem; color: #64748b; font-style: italic;">"Mewujudkan Desa Payo Lebar Maju & Mandiri"</p>
+        </div>
+
+        <div class="card-calon">
+          <div class="no-tag">02</div>
+          <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Nama Calon 2</h3>
+          <p style="font-size: 0.85rem; color: #64748b; font-style: italic;">"Transparansi Anggaran dan Kesejahteraan Warga"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: PANITIA -->
+    <div id="tab-panitia" class="tab-content">
+      <div class="section-header">
+        <i class="fa-solid fa-user-shield"></i>
+        <h2>Struktur Panitia Pemilihan Desa (PPS)</h2>
+      </div>
+      <p style="color: #64748b;">Susunan panitia resmi Pilkades Payo Lebar 2026...</p>
+    </div>
+
+  </div>
+
+  <!-- SCRIPT PINDAH TAB -->
+  <script>
+    function bukaTab(idTab, elementTombol) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(idTab).classList.add('active');
+      elementTombol.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
