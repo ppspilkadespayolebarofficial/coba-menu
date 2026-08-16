@@ -1,45 +1,232 @@
-<!-- ==================================================== -->
-<!-- 1. BAGIAN MENU NAVIGASI (TARUH DI PALING ATAS INDEX.HTML) -->
-<!-- ==================================================== -->
-<div style="background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-  <button id="btn-dps" class="menu-aktif" onclick="bukaTab('tab-dps', 'btn-dps')">Data Pemilih (DPS)</button>
-  <button id="btn-tahapan" onclick="bukaTab('tab-tahapan', 'btn-tahapan')">Tahapan Pilkades</button>
-  <button id="btn-calon" onclick="bukaTab('tab-calon', 'btn-calon')">Calon Kades</button>
-</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Resmi Pilkades Payo Lebar 2026</title>
+  <style>
+    /* 1. STYLING DASAR */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<!-- ==================================================== -->
-<!-- 2. BUNGKUS KODE DASHBOARD LAMA KAMU DENGAN DIV INI -->
-<!-- ==================================================== -->
-<div id="tab-dps" class="konten-tab" style="display: block;">
+    body {
+      background-color: #eef2ff;
+      color: #333;
+      padding: 20px;
+    }
 
-   <!-- TARUH/BIARKAN KODE DASHBOARD KAMU (ANGKA 4.072, GRAFIK, DAN FILTER) DI SINI -->
+    /* 2. BANNER MERAH KPU */
+    .hero-banner {
+      background: linear-gradient(135deg, #a71d1d, #6e0d0d);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(110, 13, 13, 0.2);
+    }
 
-</div>
+    .hero-banner h3 {
+      font-size: 0.95rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
 
-<!-- ==================================================== -->
-<!-- 3. BUAT WADAH BARU UNTUK TAHAPAN & CALON -->
-<!-- ==================================================== -->
-<div id="tab-tahapan" class="konten-tab" style="display: none; background: white; padding: 20px; border-radius: 8px;">
-   <h2>📅 Tahapan & Jadwal Pilkades</h2>
-   <p>Isi jadwal pendaftaran, pencoblosan, dll di sini...</p>
-</div>
+    .hero-banner h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
 
-<div id="tab-calon" class="konten-tab" style="display: none; background: white; padding: 20px; border-radius: 8px;">
-   <h2>👤 Calon Kepala Desa</h2>
-   <p>Isi foto dan nama calon kades di sini...</p>
-</div>
+    .hero-banner p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
 
-<!-- ==================================================== -->
-<!-- 4. SCRIPT PENGATUR KLIK (TARUH DI PALING BAWAH FILE) -->
-<!-- ==================================================== -->
-<script>
-  function bukaTab(idTab, idBtn) {
-    // Sembunyikan semua konten tab
-    document.getElementById('tab-dps').style.display = 'none';
-    document.getElementById('tab-tahapan').style.display = 'none';
-    document.getElementById('tab-calon').style.display = 'none';
+    /* 3. MENU NAVIGASI (TABS) */
+    .menu-bar {
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+    }
 
-    // Tampilkan tab yang dipilih
-    document.getElementById(idTab).style.display = 'block';
-  }
-</script>
+    .btn-menu {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      background: #f1f5f9;
+      color: #475569;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      min-width: 140px;
+    }
+
+    .btn-menu:hover {
+      background: #e2e8f0;
+    }
+
+    /* Tombol yang Sedang Aktif */
+    .btn-menu.active {
+      background: #a71d1d;
+      color: #ffffff;
+    }
+
+    /* 4. KONTEN TAB */
+    .konten-tab {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      display: none; /* Sembunyi secara bawaan */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Tab yang tampil */
+    .konten-tab.active {
+      display: block;
+    }
+
+    .judul-bagian {
+      font-size: 1.3rem;
+      color: #1e293b;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    /* STYLING DAFTAR TAHAPAN */
+    .list-tahapan {
+      list-style: none;
+    }
+    .list-tahapan li {
+      padding: 12px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 0.95rem;
+    }
+
+    /* STYLING CARD CALON */
+    .calon-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    .card-calon {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      width: 220px;
+      background: #f8fafc;
+    }
+    .no-urut {
+      display: inline-block;
+      background: #a71d1d;
+      color: white;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER ATAS -->
+  <div class="hero-banner">
+    <h3>Daftar Pemilih & Informasi Publik</h3>
+    <h1>PILKADES PAYO LEBAR TAHUN 2026</h1>
+    <p>KECAMATAN SINGKUT, KABUPATEN SAROLANGUN</p>
+  </div>
+
+  <!-- MENU NAVIGASI TOMBOL -->
+  <div class="menu-bar">
+    <button class="btn-menu active" onclick="bukaTab('tab-dps', this)">📊 Data Pemilih (DPS)</button>
+    <button class="btn-menu" onclick="bukaTab('tab-tahapan', this)">📅 Tahapan</button>
+    <button class="btn-menu" onclick="bukaTab('tab-calon', this)">👤 Calon Kades</button>
+    <button class="btn-menu" onclick="bukaTab('tab-panitia', this)">👥 Panitia (PPS)</button>
+  </div>
+
+  <!-- TAB 1: DATA PEMILIH (DPS) -->
+  <div id="tab-dps" class="konten-tab active">
+    <h2 class="judul-bagian">📊 Dashboard & Filter Data Pemilih (DPS)</h2>
+    <p style="color: #64748b; margin-bottom: 15px;">Di sini tempat kodingan Angka 4.072, Grafik, dan Tabel Filter kamu berada.</p>
+    
+    <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; text-align: center; color: #475569;">
+      <strong>[ AREA DASHBOARD KODINGAN LAMA KAMU ]</strong>
+    </div>
+  </div>
+
+  <!-- TAB 2: TAHAPAN -->
+  <div id="tab-tahapan" class="konten-tab">
+    <h2 class="judul-bagian">📅 TAHAPAN</h2>
+    <ul class="list-tahapan">
+      <li><strong>01 – 10 Agustus 2026:</strong> Pendaftaran Calon Kepala Desa</li>
+      <li><strong>11 – 15 Agustus 2026:</strong> Verifikasi Berkas & Persyaratan</li>
+      <li><strong>16 – 20 Agustus 2026:</strong> Pengumuman Daftar Pemilih Sementara (DPS)</li>
+      <li><strong>25 Agustus 2026:</strong> Hari Pemungutan & Penghitungan Suara</li>
+    </ul>
+  </div>
+
+  <!-- TAB 3: CALON KADES -->
+  <div id="tab-calon" class="konten-tab">
+    <h2 class="judul-bagian">👤 Calon Kepala Desa Payo Lebar</h2>
+    <div class="calon-grid">
+      <div class="card-calon">
+        <div class="no-urut">01</div>
+        <h3>Nama Calon 1</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">"Visi: Desa Maju & Transparan"</p>
+      </div>
+      <div class="card-calon">
+        <div class="no-urut">02</div>
+        <h3>Nama Calon 2</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">"Visi: Sejahtera Bersama Warga"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: PANITIA -->
+  <div id="tab-panitia" class="konten-tab">
+    <h2 class="judul-bagian">👥 Panitia Pemilihan Desa (PPS)</h2>
+    <ul class="list-tahapan">
+      <li><strong>Ketua PPS:</strong>   BADRUN, S.E., M.Pd</li>
+      <li><strong>Sekretaris:</strong> Budi Santoso</li>
+      <li><strong>Bendahara:</strong> Siti Aminah</li>
+    </ul>
+  </div>
+
+  <!-- SCRIPT KONTROL PINDAH TAB -->
+  <script>
+    function bukaTab(idTab, elementTombol) {
+      // 1. Sembunyikan semua konten tab
+      document.querySelectorAll('.konten-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // 2. Hilangkan status aktif dari semua tombol menu
+      document.querySelectorAll('.btn-menu').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // 3. Tampilkan tab yang dipilih & beri status aktif pada tombolnya
+      document.getElementById(idTab).classList.add('active');
+      elementTombol.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
