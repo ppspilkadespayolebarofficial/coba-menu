@@ -1,0 +1,45 @@
+<!-- ==================================================== -->
+<!-- 1. BAGIAN MENU NAVIGASI (TARUH DI PALING ATAS INDEX.HTML) -->
+<!-- ==================================================== -->
+<div style="background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+  <button id="btn-dps" class="menu-aktif" onclick="bukaTab('tab-dps', 'btn-dps')">Data Pemilih (DPS)</button>
+  <button id="btn-tahapan" onclick="bukaTab('tab-tahapan', 'btn-tahapan')">Tahapan Pilkades</button>
+  <button id="btn-calon" onclick="bukaTab('tab-calon', 'btn-calon')">Calon Kades</button>
+</div>
+
+<!-- ==================================================== -->
+<!-- 2. BUNGKUS KODE DASHBOARD LAMA KAMU DENGAN DIV INI -->
+<!-- ==================================================== -->
+<div id="tab-dps" class="konten-tab" style="display: block;">
+
+   <!-- TARUH/BIARKAN KODE DASHBOARD KAMU (ANGKA 4.072, GRAFIK, DAN FILTER) DI SINI -->
+
+</div>
+
+<!-- ==================================================== -->
+<!-- 3. BUAT WADAH BARU UNTUK TAHAPAN & CALON -->
+<!-- ==================================================== -->
+<div id="tab-tahapan" class="konten-tab" style="display: none; background: white; padding: 20px; border-radius: 8px;">
+   <h2>📅 Tahapan & Jadwal Pilkades</h2>
+   <p>Isi jadwal pendaftaran, pencoblosan, dll di sini...</p>
+</div>
+
+<div id="tab-calon" class="konten-tab" style="display: none; background: white; padding: 20px; border-radius: 8px;">
+   <h2>👤 Calon Kepala Desa</h2>
+   <p>Isi foto dan nama calon kades di sini...</p>
+</div>
+
+<!-- ==================================================== -->
+<!-- 4. SCRIPT PENGATUR KLIK (TARUH DI PALING BAWAH FILE) -->
+<!-- ==================================================== -->
+<script>
+  function bukaTab(idTab, idBtn) {
+    // Sembunyikan semua konten tab
+    document.getElementById('tab-dps').style.display = 'none';
+    document.getElementById('tab-tahapan').style.display = 'none';
+    document.getElementById('tab-calon').style.display = 'none';
+
+    // Tampilkan tab yang dipilih
+    document.getElementById(idTab).style.display = 'block';
+  }
+</script>
